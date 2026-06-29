@@ -26,6 +26,8 @@ To allow the attack simulation, Remote Desktop Protocol (RDP) must be enabled on
 1. Ensure both the Windows and Kali Linux machines are configured on the same network interface (NAT network / Shared network).
 2. Open the command prompt (cmd) on the Windows machine and run `ipconfig` to verify its IP address & Ping the IP to confirm connectivity.
 
+![Network Verification](screenshots/network_verification.png)
+
 #### Download and Unzip the Wordlist :
 ```bash
 # Download wordlist
@@ -35,6 +37,8 @@ sudo apt update && sudo apt install wordlists -y
 cd /usr/share/wordlists/
 sudo gunzip rockyou.txt.gz
 ```
+![Download and Unzip Wordlist](screenshots/download_and_unzip_wordfile.png)
+
 ### Phase 3 : Executing the BruteForce Attack
 1. From the Kali Linux terminal, launch Hydra
 against the target Windows machine using the
@@ -51,13 +55,19 @@ time.
 • -l Administrator : Targets the "Administrator" user account.
 • -P : Specifies the path to the password wordlist (rockyou.txt)
 
+![Hydra Attack](screenshots/hydra_attack.png)
 
 ### Phase 4 : Blue Team Log Analysis (Event Viewer)
 • Identifying the Attack Indicators :
 1. Open Event Viewer on the Windows machine.
 2. Expand Windows Logs and select the "Security log".
-3. Clear past logs to isolate the attack session,
-then refresh to look for a rapid influx of Audit Failure events occurring within seconds of each other.
+3. Clear past logs to isolate the attack session, then refresh to look for a rapid influx of Audit Failure events occurring within seconds of each other.
+
+![Event Viewer](screenshots/event_viewer_failures.png)
+
+![Event information 1](screenshots/event_information_1.png)
+
+![Event information 2](screenshots/event_information_2.png)
 
 • Filtering and Sorting Logs because  bruteforce attack generates thousands of logs, filtering can narrow downs the investigation :
 1. Click "Filter Current Log" in the right hand
